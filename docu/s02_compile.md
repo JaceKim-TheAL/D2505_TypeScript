@@ -111,3 +111,31 @@ $ tsc --init
   }
 }
 ```
+<br/>
+
+### include / exclude 설정
+컴파일에 포함할 디렉토리/파일 경로를 설정하거나, 제외시킬 수 있습니다. <br/>
+포함, 제외될 각 항목에는 [glob 패턴](https://ko.wikipedia.org/wiki/%EA%B8%80%EB%A1%9C%EB%B8%8C_(%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D)) 을 사용하여 표기할 수 있습니다.
+
+- `*` 0 이상의 모든 문자와 일치 (디렉토리 분리 기호 제외)
+
+- `?` 1개 문자와 일치 (디렉토리 분리 기호 제외)
+
+- `**/` 모든 하위 디렉토리까지 포함
+
+```json
+{
+  // 컴파일 포함
+  "include": [
+    "src/**/*.tsx?"
+  ],
+  // 컴파일 제외
+  "exclude": [
+    "node_modules",
+    "build",
+    "**/*.(spec|test).ts"
+  ],
+  // 컴파일 옵션
+  "compilerOptions": { ... }
+}
+```
