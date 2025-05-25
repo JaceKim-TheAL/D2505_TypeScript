@@ -30,9 +30,9 @@
 $ tsc --init
 ```
 명령어를 통해 생성된 `tsconfig.json` 설정 코드는 다음과 같습니다. <br/>
-컴파일러 옵션("compilerOptions")만 추가되어 있으며, 컴파일러 기본값을 사용할 경우, 각 항목을 주석처리 합니다. 컴파일 옵션의 각 설정은 번역된 주석을 참고합니다. 컴파일 설정 가능한 모든 옵션은 [Compiler Options](https://www.typescriptlang.org/docs/handbook/compiler-options.html)에서 살펴볼 수 있습니다.
+컴파일러 옵션("compilerOptions")만 추가되어 있으며, 컴파일러 기본값을 사용할 경우, 각 항목을 주석처리 합니다. 컴파일 옵션의 각 설정은 번역된 주석을 참고합니다. 컴파일 설정 가능한 모든 옵션은 [Compiler Options](https://www.typescriptlang.org/docs/handbook/compiler-options.html) 에서 살펴볼 수 있습니다.
 
-```
+```json
 {
   "compilerOptions": {
   
