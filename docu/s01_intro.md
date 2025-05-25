@@ -1,6 +1,6 @@
-<img src="../images/nodejs_logo.png">
+<img src="../images/typescript_logo.png">
 <p style="text-align: right"> 
-    <a href="../README.md">[INDEX]</a>
+    <a href="./README.md">[INDEX]</a>
 </p>
 
 # TypeScript 소개
