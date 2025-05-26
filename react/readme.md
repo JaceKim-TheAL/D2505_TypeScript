@@ -7,6 +7,8 @@
 npx create-react-app my-app --template typescript
 ```
 
+---
+환경설정 파일에서 es5를 es6로 변경 
 [tsconfig.json]
 ```json
 {
@@ -56,6 +58,8 @@ const App:React.FC = () => {
 }
 ```
 
+---
+새로운 타입을 정의한 tsx 파일 생성
 [src/Store.tsx]   // 새파일
 ```ts
 import React from "react";
@@ -106,7 +110,9 @@ export default App;
 ``
 
 ---
-src에 model 디렉토리를 생성하고, restaurant.ts 파일을 생성
+사용자가 사용할 타입모델은 model 디렉토리에서 관리
+> src에 model 디렉토리를 생성하고, restaurant.ts 파일을 생성
+
 [src/model/restaurant.ts]
 ```ts
 // let data = {
