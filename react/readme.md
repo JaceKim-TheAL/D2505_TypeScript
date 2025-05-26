@@ -395,3 +395,22 @@ export type RestaurantOnlyCategory = Pick<Restaurant, 'category'>;
 ```
 
 Tip. ?는 있을수도 있고 없을수도 있고 할 때
+
+
+---
+실전에서 Api 형태로 다양한 타입을 주고 받을 때
+
+```ts
+[src/model/restaurant.ts]
+export type ApiResponse<T> = {
+    data: T[];
+    totalPages: number;
+    page: number
+}
+
+export type RestaurantApiResponse = ApiResponse<Restaurant>;
+export type MenuApiResponse = ApiResponse<Menu>;
+
+```
+필요한 형태의 다양한 Api 리턴값들을 생성할 수 있다
+
