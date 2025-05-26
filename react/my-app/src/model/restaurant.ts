@@ -42,5 +42,7 @@ export type Menu = {
     category: string;
 };
 
+export type AddressWithoutZipcode = Omit<Address, 'zipcode'>;
+export type RestaurantOnlyCategory = Pick<Restaurant, 'category'>;
 
 

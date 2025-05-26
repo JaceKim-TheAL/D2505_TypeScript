@@ -247,5 +247,151 @@ interface OwnProps {
 ```
 
 ---
+기존 타입모델을 확장, extends
+> 새로운 타입모델 BestMenu를 생성
+[src/BestMenu.tsx] 생성
+```ts
+import React from "react";
+
+const BestMenu: React.FC = () => {
+    return (
+        <div>Best Menu</div>
+    );
+}
+
+export default BestMenu;
+
+```
+
+사용할 타입 설정시 똑같은게 중복이라면 기존걸 불러온다
+[src/BestMenu.tsx] 
+```ts
+import React from "react";
+import { Menu } from "./model/restaurant";
+
+interface OwnProps extends Menu {
+    // name: string;
+    // category: string;
+    // price: number;
+}
+
+const BestMenu: React.FC<OwnProps> = () => {
+    return (
+        <div>Best Menu</div>
+    );
+}
+
+export default BestMenu;
+```
 
 
+[src/App.tsx]
+```ts
+
+const App:React.FC = () => {
+  // const [myRestaurant, setMyRestaurant] = useState(data);
+  const [myRestaurant, setMyRestaurant] = useState<Restaurant>(data)
+
+  const changeAddress = (address:Address) => {
+    setMyRestaurant({...myRestaurant, address: address})
+  }
+
+  const showBestMenuName = (name: string) => {
+    return name 
+  }
+  return (
+    <div className="App">
+      <Store info={myRestaurant} changeAddress={changeAddress}/>
+      <BestMenu name="불고기피자" category="pizza" price={10000} showBestMenuName={showBestMenuName}/>
+    </div>
+  );
+}
+
+```
+
+
+[src/BestMenu.tsx]
+```ts
+import React from "react";
+import { Menu } from "./model/restaurant";
+
+interface OwnProps extends Menu {
+    showBestMenuName(name: string): string;
+}
+
+const BestMenu: React.FC<OwnProps> = ({name, price, category, showBestMenuName}) => {
+    return (
+        <div>{name}</div>
+    );
+}
+
+export default BestMenu;
+
+```
+
+extends를 사용하면 코드량도 줄어들고, 실수도 줄어든다!!!
+
+---
+그렇다면 interface 말고 type 에서는 어떻게 사용할까?
+```ts
+interface OwnProps extends Menu {
+    showBestMenuName(name: string): string;
+}
+```
+
+type에서는 `&`(그리고) 를 붙혀주면 된다
+```ts
+type OwnProps = Menu & {
+    showBestMenuName(name: string): string;
+}
+
+```
+
+---
+이번에는 추가 하는게 아니라 특정 타입을 빼줄때 Omit
+[src/model/restaurants.ts]
+```ts
+
+export type Address = {
+    city: string;
+    detail: string;
+    zipcode: number;
+};
+
+export type Menu = {
+    name: string;
+    price: number;
+    category: string;
+};
+
+export type AddressWithoutZipcode = Omit<Address, 'zipcode'>;
+
+```
+
+---
+가격 즉 특정 값만 빼고 바로 사용하려면 
+[src/BestMenu.tsx]
+```ts
+interface OwnProps extends Omit<Menu, 'price'> {
+    showBestMenuName(name: string): string;
+}
+
+const BestMenu: React.FC<OwnProps> = ({name, category, showBestMenuName}) => {
+    return (
+        <div>{name}</div>
+    );
+}
+
+export default BestMenu;
+```
+
+---
+빼주는게 아니라, 반대로 특정 값만 가져오려면 Pick
+[src/model/restaurant.ts]
+```ts
+
+export type AddressWithoutZipcode = Omit<Address, 'zipcode'>;
+export type RestaurantOnlyCategory = Pick<Restaurant, 'category'>;
+```
+
+Tip. ?는 있을수도 있고 없을수도 있고 할 때

@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import Store from './Store';
 import { Address, Restaurant } from './model/restaurant';
+import BestMenu from './BestMenu';
 
 let data = {
   name: "John",
@@ -24,16 +25,19 @@ let data = {
 
 const App:React.FC = () => {
   // const [myRestaurant, setMyRestaurant] = useState(data);
-  const [myRestaurant, setMyRestaurant] = useState<Restaurant>(data);
+  const [myRestaurant, setMyRestaurant] = useState<Restaurant>(data)
+
   const changeAddress = (address:Address) => {
-    setMyRestaurant({
-      ...myRestaurant,
-      address: address
-    })
+    setMyRestaurant({...myRestaurant, address: address})
+  }
+
+  const showBestMenuName = (name: string) => {
+    return name 
   }
   return (
     <div className="App">
-      <Store info={data} />
+      <Store info={myRestaurant} changeAddress={changeAddress}/>
+      <BestMenu name="불고기피자" category="pizza" price={10000} showBestMenuName={showBestMenuName}/>
     </div>
   );
 }
