@@ -45,11 +45,11 @@ export type Menu = {
 export type AddressWithoutZipcode = Omit<Address, 'zipcode'>;
 export type RestaurantOnlyCategory = Pick<Restaurant, 'category'>;
 
-export type ApiResponse<T> = {
-    data: T[];
-    totalPages: number;
-    page: number
-}
+// export type ApiResponse<T> = {
+//     data: T[];
+//     totalPages: number;
+//     page: number
+// }
 
-export type RestaurantApiResponse = ApiResponse<Restaurant>;
-export type MenuApiResponse = ApiResponse<Menu>;
+// export type RestaurantApiResponse = ApiResponse<Restaurant>;
+// export type MenuApiResponse = ApiResponse<Menu>;
